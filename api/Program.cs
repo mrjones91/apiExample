@@ -18,11 +18,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 //simple post route with query parameters for email content
-app.MapPost("/email", (string email, string subject, string htmlMessage) =>
+app.MapPost("/email", async (string email, string subject, string htmlMessage) =>
 {
     EmailSender sender = new EmailSender(builder.Configuration);
-    sender.SendEmailAsync(email, subject, htmlMessage);
-   return "sent";
+    await sender.SendEmailAsync(email, subject, htmlMessage);
+    return "sent";
 })
 .WithName("SendEmail")
 .WithOpenApi();

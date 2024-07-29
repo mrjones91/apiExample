@@ -9,7 +9,7 @@ namespace email;
 //We're just calling the SendEmailAsync method so that we can send emails and do whatever else we may need to do
 	public class EmailSender : IEmailSender
 	{
-        public string SendGridSecret { get; set; }
+        private string SendGridSecret { get; set; }
         public EmailSender(IConfiguration _config) //can be configured differently. potentially only slightly more secure than just passing the string
         {
 			SendGridSecret = _config.GetValue<string>("SendGrid:SecretKey");
